@@ -6,7 +6,7 @@ import LessonPlanView from './components/LessonPlanView';
 import { MOCK_LESSON_DATA, TABS, GET_MOCK_DATA_FOR_TAB, TabType } from './constants';
 
 const App = () => {
-  const [activeTab, setActiveTab] = useState(TabType.LESSON_PLAN);
+  const [activeTab, setActiveTab] = useState(TabType.LESSON_1);
 
   // Get the current theme definition
   const activeTabConfig = TABS.find(t => t.id === activeTab);
@@ -19,7 +19,7 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 relative overflow-hidden font-sans selection:bg-black selection:text-white">
-      
+
       {/* Liquid Animated Background */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         {/* Blob 1 */}
@@ -32,27 +32,28 @@ const App = () => {
 
       {/* Main Content Container */}
       <div className="relative z-10 max-w-md mx-auto h-screen flex flex-col">
-        
-        <Header 
-          classLevel={currentData.classLevel} 
-          chapterNumber={currentData.chapterNumber} 
+
+        <Header
+          classLevel={currentData.classLevel}
+          chapterNumber={currentData.chapterNumber}
+          chapterTitle={currentData.chapterTitle}
         />
 
-        <TabNavigation 
-          activeTab={activeTab} 
+        <TabNavigation
+          activeTab={activeTab}
           onTabChange={setActiveTab}
           cardTheme={cardTheme}
           borderColor={borderColor}
         />
-        
+
         <div className="flex-1 overflow-y-auto no-scrollbar px-5 mask-image-gradient">
-           {/* Key prop ensures the component re-mounts and triggers animations when tab changes */}
-           <LessonPlanView 
-             key={activeTab} 
-             data={currentData} 
-             cardTheme={cardTheme}
-             borderColor={borderColor}
-           />
+          {/* Key prop ensures the component re-mounts and triggers animations when tab changes */}
+          <LessonPlanView
+            key={activeTab}
+            data={currentData}
+            cardTheme={cardTheme}
+            borderColor={borderColor}
+          />
         </div>
 
       </div>
