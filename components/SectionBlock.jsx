@@ -37,7 +37,10 @@ const SectionBlock = ({ section, index, cardTheme, borderColor }) => {
           {Array.isArray(section.englishText) ? (
             <ul className="list-disc pl-5 space-y-1">
               {section.englishText.map((point, i) => (
-                <li key={i}>{point}</li>
+                <li key={i}>
+                  <span className="font-bold">{point.charAt(0)}</span>
+                  {point.slice(1)}
+                </li>
               ))}
             </ul>
           ) : (
